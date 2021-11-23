@@ -1,5 +1,5 @@
 # Book_List_api
-Simple Rest API with Flask of list of top Arabic 100 Novels in all times
+Simple Rest API with Flask of to get list and data of top 100 Arabic Novels in all times
 
 ## Code-Dependencies
 
