@@ -159,7 +159,7 @@ class NovelList(Resource):
         args = parser.parse_args()
         order = int(args['order'])
 
-        # insert(order = None) will append our novels table
+        # insert(order = 0) will append our novels table
         if(not order or order > ws.max_row):
             order = ws.max_row+1
 
