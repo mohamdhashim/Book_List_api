@@ -165,16 +165,16 @@ class NovelList(Resource):
 
         reorder_sheet(order, up=False)
 
-        ws.insert_rows(order+1)
-        ws.cell(order+1, 1).value = order
-        ws.cell(order+1, 2).value = args['novel_name']
-        ws.cell(order+1, 2).hyperlink = args['novel_url']
+        ws.insert_rows(order)
+        ws.cell(order, 1).value = order
+        ws.cell(order, 2).value = args['novel_name']
+        ws.cell(order, 2).hyperlink = args['novel_url']
 
-        ws.cell(order+1, 3).value = args['author_name']
-        ws.cell(order+1, 3).hyperlink = args['author_url']
+        ws.cell(order, 3).value = args['author_name']
+        ws.cell(order, 3).hyperlink = args['author_url']
 
-        ws.cell(order+1, 4).value = args['country_name']
-        ws.cell(order+1, 4).hyperlink = args['country_url']
+        ws.cell(order, 4).value = args['country_name']
+        ws.cell(order, 4).hyperlink = args['country_url']
 
         wb.save('mido.xlsx')
         return row_to_json(ws[order+1]), 201
