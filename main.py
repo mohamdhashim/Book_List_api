@@ -112,7 +112,7 @@ class Novel(Resource):
             abort_if_novel_doesnt_exist(order)
 
         reorder_sheet(order)
-        wb.save('mido.xlsx')
+        wb.save('booklist.xlsx')
         return 'deleted successfully', 204
 
 
@@ -129,7 +129,7 @@ class Novel(Resource):
 
                 ws.cell(i, 4).value = args['country_name']
                 ws.cell(i, 4).hyperlink = args['country_url']
-                wb.save('mido.xlsx')
+                wb.save('booklist.xlsx')
                 return row_to_json(ws[i])
 
         abort_if_novel_doesnt_exist(order)
@@ -159,25 +159,32 @@ class NovelList(Resource):
         args = parser.parse_args()
         order = int(args['order'])
 
-        # insert(order = 0) will append our novels table
+        # insert(order = None) will append our novels table
         if(not order or order > ws.max_row):
-            order = ws.max_row+1
-
+            index = ws.max_row+1
+            order = ws.max_row
+        else:
+            index = order+1 # body + head
+            
         reorder_sheet(order, up=False)
 
-        ws.insert_rows(order)
-        ws.cell(order-1, 1).value = order
-        ws.cell(order, 2).value = args['novel_name']
-        ws.cell(order, 2).hyperlink = args['novel_url']
+        ws.insert_rows(index)
+        
+        if(not order or order > ws.max_row): 
+            order = order - 1
+            
+        ws.cell(index, 1).value = order 
+        ws.cell(index, 2).value = args['novel_name']
+        ws.cell(index, 2).hyperlink = args['novel_url']
 
-        ws.cell(order, 3).value = args['author_name']
-        ws.cell(order, 3).hyperlink = args['author_url']
+        ws.cell(index, 3).value = args['author_name']
+        ws.cell(index, 3).hyperlink = args['author_url']
 
-        ws.cell(order, 4).value = args['country_name']
-        ws.cell(order, 4).hyperlink = args['country_url']
+        ws.cell(index, 4).value = args['country_name']
+        ws.cell(index, 4).hyperlink = args['country_url']
 
-        wb.save('mido.xlsx')
-        return row_to_json(ws[order]), 201
+        wb.save('booklist.xlsx')
+        return row_to_json(ws[index]), 201
 
 
 ##
