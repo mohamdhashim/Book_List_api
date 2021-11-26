@@ -9,7 +9,7 @@ All Dependencies in requirements.txt file to install all of them using pip just
 
 2. activate your virtualenv.
 
-3. run in `pip install -r requirements.txt` in your shell.
+3. run `pip install -r requirements.txt` in your shell.
 
    
 
