@@ -50,7 +50,6 @@ All Dependencies in requirements.txt file to install all of them using pip just
     .
     .
     {
-    {
         "order": 106,
         "novel_name": "مدن الملح خماسية ",
         "novel_url": "https://ar.wikipedia.org/wiki/مدن_الملح",
